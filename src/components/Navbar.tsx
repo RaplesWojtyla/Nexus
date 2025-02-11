@@ -3,13 +3,14 @@ import Link from 'next/link'
 import React from 'react'
 import DesktopNavbar from './DesktopNavbar'
 import MobileNavbar from './MobileNavbar'
+import { syncUser } from '@/action/user.action'
 
 const Navbar = async () => {
 	const user: User | null = await currentUser()
 
 	if (user) {
 		try {
-			// await syncUser()
+			await syncUser()
 		} catch (error: unknown) {
 			if (error instanceof Error) {
 				console.error(`Error message: ${error.message}`)
