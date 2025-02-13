@@ -57,3 +57,15 @@ export const getUserByClerkID = (clerkID: string) => {
 		}
 	})
 }
+
+export const getDbUserID = async (): Promise<String | Error> => {
+	const { userId: clerkID } = await auth()
+
+	if (!clerkID) throw new Error('Unauthorized')
+
+	const user = await getUserByClerkID(clerkID)
+
+	if (!user) throw new Error("User not found!")
+	
+	return user.id
+}
