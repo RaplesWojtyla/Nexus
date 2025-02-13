@@ -7,6 +7,9 @@ import { Avatar, AvatarImage } from "./ui/avatar"
 import { Textarea } from "./ui/textarea"
 import { Button } from "./ui/button"
 import { ImageIcon, Loader2Icon, SendIcon } from "lucide-react"
+import { createPost } from "@/action/post.action"
+import toast from "react-hot-toast"
+
 
 const CreatePost = () => {
 	const { user } = useUser()
@@ -15,17 +18,37 @@ const CreatePost = () => {
 	const [isPosting, setIsPosting] = useState<boolean>(false)
 	const [showImageUpload, setShowImageUpload] = useState<boolean>(false)
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (!content && !image) return
 
 		setIsPosting(true)
 
 		try {
-			// await createPost(content, image)
+			const res = await createPost(content, image)
+
+			if (res.success) {
+				setContent("")
+				setImage("")
+				setShowImageUpload(false)
+
+				toast.success("Post created successfully!", {
+					ariaProps: {
+						role: "status",
+						"aria-live": "polite"
+					}
+				})
+			} else {
+				toast.error("Failed to create post.", {
+					ariaProps: {
+						role: "status",
+						"aria-live": "polite"
+					}
+				})
+			}
 		} catch (error) {
-			
+			toast.error('Connection Error!')
 		} finally {
-			setTimeout(() => setIsPosting(false), 2000)
+			setIsPosting(false)
 		}
 	}
 
