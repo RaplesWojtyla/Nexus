@@ -21,7 +21,7 @@ const UnAuthenticatedSidebar = () => {
 						Login
 					</Button>
 				</SignInButton>
-				<SignUpButton>
+				<SignUpButton mode='modal'>
 					<Button className='w-full mt-2'>
 						Sign Up
 					</Button>

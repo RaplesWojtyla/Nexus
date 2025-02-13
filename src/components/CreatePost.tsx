@@ -1,6 +1,6 @@
 'use client'
 
-import { useUser } from "@clerk/nextjs"
+import { SignInButton, useUser } from "@clerk/nextjs"
 import { useState } from "react"
 import { Card, CardContent } from "./ui/card"
 import { Avatar, AvatarImage } from "./ui/avatar"
@@ -88,7 +88,7 @@ const CreatePost = () => {
 						<Button
 							className="flex items-center"
 							onClick={handleSubmit}
-							disabled={(!content.trim() && !image) || isPosting}
+							disabled={(!content.trim() && !image) || isPosting || !user}
 						>
 							{isPosting ? (
 								<>
