@@ -42,23 +42,33 @@ export const syncUser = async () => {
 }
 
 export const getUserByClerkID = (clerkID: string) => {
-	return prisma.user.findUnique({
-		where: {
-			clerkID: clerkID
-		},
-		include: {
-			_count: {
-				select: {
-					followers: true,
-					following: true,
-					posts: true
+	try {
+		const user = prisma.user.findUnique({
+			where: {
+				clerkID: clerkID
+			},
+			include: {
+				_count: {
+					select: {
+						followers: true,
+						following: true,
+						posts: true
+					}
 				}
 			}
+		})
+
+		return user
+	} catch (error: unknown) {
+		if (error instanceof Error) {
+			throw new Error(error.message)
+		} else {
+			throw new Error('Unknown error occurred')
 		}
-	})
+	} 
 }
 
-export const getDbUserID = async (): Promise<String | Error> => {
+export const getDbUserID = async (): Promise<string> => {
 	const { userId: clerkID } = await auth()
 
 	if (!clerkID) throw new Error('Unauthorized')
