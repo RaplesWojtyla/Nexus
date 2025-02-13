@@ -4,8 +4,7 @@ import UnAuthenticatedSidebar from './UnAuthenticatedSidebar'
 import { Card, CardContent } from './ui/card'
 import Link from 'next/link'
 import { getUserByClerkID } from '@/action/user.action'
-import { Avatar } from './ui/avatar'
-import { AvatarImage } from '@radix-ui/react-avatar'
+import { Avatar, AvatarImage } from './ui/avatar'
 import { Separator } from './ui/separator'
 import { LinkIcon, MapPinIcon } from 'lucide-react'
 
@@ -26,7 +25,7 @@ const Sidebar = async () => {
 							className='flex flex-col items-center justify-center'
 						>
 							<Avatar className='w-20 h-20 border-2'>
-								<AvatarImage src={user.profile_picture ?? '/avatar.png'} />
+								<AvatarImage src={user.profile_picture ?? ''} />
 							</Avatar>
 
 							<div className="mt-4 space-y-1">
