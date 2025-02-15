@@ -58,7 +58,7 @@ const CreatePost = () => {
 				<div className="space-y-4">
 					<div className="flex gap-x-4">
 						<Avatar className="w-10 h-10">
-							<AvatarImage src={user?.imageUrl ?? ''} />
+							<AvatarImage src={user?.imageUrl ?? '/avatar.png'} />
 						</Avatar>
 
 						<Textarea

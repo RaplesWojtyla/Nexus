@@ -25,7 +25,7 @@ const Sidebar = async () => {
 							className='flex flex-col items-center justify-center'
 						>
 							<Avatar className='w-20 h-20 border-2'>
-								<AvatarImage src={user.profile_picture ?? ''} />
+								<AvatarImage src={user.profile_picture ?? '/avatar.png'} />
 							</Avatar>
 
 							<div className="mt-4 space-y-1">
