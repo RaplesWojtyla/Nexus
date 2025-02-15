@@ -1,4 +1,5 @@
 import CreatePost from "@/components/CreatePost"
+import FollowSuggestion from "@/components/FollowSuggestion"
 
 const Home = () => {
 	return (
@@ -7,7 +8,7 @@ const Home = () => {
 				<CreatePost />
 			</div>
 			<div className="hidden lg:block lg:col-span-4 sticky top-20">
-				Follow Suggestions
+				<FollowSuggestion />
 			</div>
 		</div>
 	)
