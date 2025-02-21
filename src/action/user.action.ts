@@ -71,14 +71,20 @@ export const getUserByClerkID = (clerkID: string) => {
 	} 
 }
 
-export const getDbUserID = async (): Promise<string> => {
+export const getDbUserID = async (): Promise<string | null> => {
 	const { userId: clerkID } = await auth()
 
-	if (!clerkID) throw new Error('Unauthorized')
+	if (!clerkID) {
+		console.error('User unauthenticated.')
+		return null
+	}
 
 	const user = await getUserByClerkID(clerkID)
 
-	if (!user) throw new Error("User not found!")
+	if (!user) {
+		console.error('User not found!')
+		throw new Error("User not found!")
+	}
 	
 	return user.id
 }
@@ -86,6 +92,8 @@ export const getDbUserID = async (): Promise<string> => {
 export const getRandomUsers = async () => {
 	try {
 		const userID = await getDbUserID()
+
+		if (!userID) return []
 
 		const randomUsers = await prisma.user.findMany({
 			where: {
@@ -127,6 +135,8 @@ export const getRandomUsers = async () => {
 export const toggleFollow = async (targetUserID: string) => {
 	try {
 		const userID = await getDbUserID()
+
+		if (!userID) return {success: false, error: 'Unauthenticated'}
 
 		if (userID === targetUserID) throw new Error("You can't follow yourself")
 

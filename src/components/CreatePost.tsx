@@ -32,6 +32,7 @@ const CreatePost = () => {
 				setShowImageUpload(false)
 
 				toast.success("Post created successfully!", {
+					duration: 3000,
 					ariaProps: {
 						role: "status",
 						"aria-live": "polite"
@@ -46,7 +47,12 @@ const CreatePost = () => {
 				})
 			}
 		} catch (error) {
-			toast.error('Connection Error!')
+			toast.error('Connection Error!', {
+				ariaProps: {
+					role: "status",
+					"aria-live": "polite"
+				}
+			})
 		} finally {
 			setIsPosting(false)
 		}
