@@ -252,7 +252,7 @@ const PostCard = ({ post, dbUserID }: { post: Post, dbUserID: string | null }) =
 											<div className="flex flex-wrap items-center gap-x-2 gap-y-1">
 												<span className="font-medium text-sm">{ comment.author.name }</span>
 												<span className="text-sm text-muted-foreground">@{ comment.author.username }</span>
-												<span className="text-sm text-muted-foreground">.</span>
+												<span className="text-sm text-muted-foreground">•</span>
 												<span className="text-sm text-muted-foreground">{ formatDistanceToNow(new Date(comment.createdAt)) }</span>
 											</div>
 											<p className="text-sm break-words">{ comment.content }</p>
